@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1171a84c58.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        background-color: white;
+    }
+
+    .app-button {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-xl navbar-light border-bottom box-shadow mb-3 ">
+
+            <div class="container">
+                <a class="navbar-brand" href><img src="44884218_345707102882519_2446069589734326272_n.jpg"
+                        style="height: 40px; padding: 0px 10px;"><span>Magical.tools</span></a>
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <ul class="navbar-nav">
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="MagicTODO.html">Magic ToDo</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Formalizer.html">Formalizer</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Judge.html">Judge</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Estimator.html">Estimator</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Compiler.html">Compiler</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="TheChef.html">Chef</a>
+                        </li>
+                        <li id="apps-toggle" class="nav-item border">
+                            <div id="apps-icon" data-tooltip="Apps" class="btn btn-link nav-link mx-2" aria-label="Apps"
+                                data-tooltip-attached="true">
+                                <i class="fab fa-android mx-1" style="color: #8611d4;"></i><i class="fab fa-apple mx-1"
+                                    style="color: #8611d4;"></i>
+                            </div>
+                            <div id="apps-card" class="card" style="display:none;">
+                                <div class="card-body">
+                                    <h5 class="card-title">goblin.tools App</h5>
+                                    <p class="card-text">goblin.tools is
+                                        available as an app in the store:</p>
+                                    <div class="d-flex justify-content-center my-2">
+                                        <a class="btn btn-link nav-link m-auto border border-2 rounded app-button"
+                                            href="" target="_blank" rel="noopener noreferrer">
+                                            <i class="fab fa-android fa-2x"></i>
+                                            <span>Android</span>
+                                        </a>
+                                        <a class="btn btn-link nav-link m-auto border border-2 rounded app-button"
+                                            href="" target="_blank" rel="noopener noreferrer">
+                                            <i class="fab fa-apple fa-2x"></i>
+                                            <span>Apple</span>
+                                        </a>
+                                    </div>
+                                    <p>Purchases of the apps go towards
+                                        keeping the website completely free
+                                        and ad-free, and supporting ongoing
+                                        development (and the author).</p>
+                                    <p>It can also be installed for free:</p>
+                                    <div id="pwa-button"
+                                        class="btn btn-link nav-link mx-auto border border-2 rounded mt-2"
+                                        onclick="promptWebInstall()">
+                                        <i class="fas fa-mobile app-icon"></i> As
+                                        a Web App
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item border">
+                            <div id="dark-mode-toggle" class="btn btn-link nav-link mx-2" data-tooltip="Feedback"
+                                data-tooltip-attached="true" onclick="toggleDarkMode()">
+                                <i id="theme-icon" class="fas fa-moon"></i>
+                            </div>
+                        </li>
+                        <style>
+                            .navbar-brand {
+                                color: unset !important;
+                            }
+
+                            .nav-link {
+                                color: unset !important;
+                            }
+
+                            .fa-sun,
+                            .fa-moon  {
+                                color: #8611d4;
+                            }
+                        </style>
+                        <li id="theme-toggle" class="nav-item border">
+                            <a class="nav-link mx-1" href="subscribe.html">Subscribe</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="about.html">About</a>
+                        </li>
+
+                        <style>
+                            .dark-mode {
+                                background-color: #212529;
+                                color: #f0f0f0;
+                            }
+                        </style>
+                        <script>
+                            function toggleDarkMode() {
+                                const body = document.body;
+                                const themeIcon = document.getElementById('theme-icon');
+                                const isDarkMode = body.classList.toggle('dark-mode');
+                                localStorage.setItem('darkMode', isDarkMode);
+
+                                if (isDarkMode) {
+                                    themeIcon.classList.remove('fa-moon');
+                                    themeIcon.classList.add('fa-sun');
+                                } else {
+                                    themeIcon.classList.remove('fa-sun');
+                                    themeIcon.classList.add('fa-moon');
+                                }
+                            }
+
+
+
+
+                            function applyDarkModePreference() {
+                                const body = document.body;
+                                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                                const navULItems = document.getElementsByClassName('nav-link');
+
+                                if (isDarkMode) {
+                                    body.classList.add('dark-mode');
+                                    for (let i = 0; i < navULItems.length; i++) {
+                                        navULItems[i].classList.add('whiteItem');
+                                    }
+
+                                } else {
+                                    body.classList.remove('dark-mode');
+
+
+                                }
+                            }
+
+                            applyDarkModePreference();
+
+                        </script>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <style>
+        .card {
+            position: absolute;
+            top: 2rem;
+            display: none;
+        }
+
+        #apps-toggle:hover #apps-card {
+            display: block;
+            margin-top: 1rem;
+            max-width: 300px;
+            background-color: var(--bs-body-bg);
+            z-index: 101;
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#apps-toggle").hover(function () {
+                $("#apps-card").css("display", "block");
+            }, function () {
+                $("#apps-card").css("display", "none");
+            });
+        });
+    </script>
+    <div class="container">
+        <div style="position: relative;">
+            <h1 class="text-center mt-4">Subscribe</h1>
+            <h2 class="text-center">Subscribe now for exclusive updates, offers, and exciting content delivered straight
+                to your inbox.
+            </h2>
+            <div class="help-container">
+                <button id="help-toggle" aria-label="Help" class="btn btn-outline-secondary rounded-circle"
+                    style="position: absolute; right: 0; top: 9px;">
+                    <i class="fas fa-question"></i>
+                </button>
+                <div id="help-card" class="card"
+                    style="display: none; position: absolute; color:black; right: 0; top: 40px; width: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Need Help?</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#help-toggle").hover(function () {
+                    $("#help-card").fadeIn();
+                }, function () {
+                    $("#help-card").fadeOut();
+                });
+            });
+        </script>
+        <div class="inputs">
+            <div class="form-body">
+                <div class="row">
+                    <div class="form-holder">
+                        <div class="form-content">
+                            <div class="form-items border">
+                                <h3>Subscribe</h3>
+                                <p>Fill in the data below.</p>
+                                <form class="requires-validation" novalidate
+                                    action="https://sheetdb.io/api/v1/61ccj7tek8twb" method="post" role="form"
+                                    id="sheetdb-form" name="sheetdb-form">
+                                    <div class="col-md-12 p-0">
+                                        <input class="border" class="form-control" type="text" name="data[FULL NAME]"
+                                            placeholder="Full Name" required>
+                                        <div class="valid-feedback">Username field is valid!</div>
+                                        <div class="invalid-feedback">Username field cannot be blank!</div>
+                                    </div>
+
+                                    <div class="col-md-12 p-0">
+                                        <input class="border" class="form-control" type="Email" name="data[EMAIL]"
+                                            placeholder="E-mail Address" required>
+                                        <div class="valid-feedback">Email field is valid!</div>
+                                        <div class="invalid-feedback">Email field cannot be blank!</div>
+                                    </div>
+
+                                    <div class="col-md-12 p-0">
+                                        <input class="border" class="form-control" type="Number" name="data[TELEPHONE]"
+                                            placeholder="Telephone" required>
+                                        <div class="valid-feedback">Telephone field is valid!</div>
+                                        <div class="invalid-feedback">Telephone field cannot be blank!</div>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <div class="invalid-feedback">Please confirm that the entered data are all
+                                            correct!</div>
+                                    </div>
+                                    <div class="form-button mt-3">
+                                        <button id="submit" type="submit" class="btn btn-primary"
+                                            style="background-color: #8611d4; border: none;">Subscribe</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            var form = document.getElementById('sheetdb-form');
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+
+                            location.reload("subscribe.html");
+                        }
+
+                    });
+            });
+        </script>
+        <style>
+            .inputs {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+            html,
+            body {
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .form-holder {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .form-holder .form-content {
+                position: relative;
+                text-align: center;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                align-items: center;
+                padding: 60px;
+            }
+
+            .form-content .form-items {
+                padding: 40px;
+                display: inline-block;
+                width: 100%;
+                min-width: 780px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 0px;
+                text-align: left;
+                -webkit-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+
+            .form-content h3 {
+                text-align: left;
+                font-size: 28px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .form-content h3.form-title {
+                margin-bottom: 30px;
+            }
+
+            .form-content p {
+                text-align: left;
+                font-size: 17px;
+                font-weight: 300;
+                line-height: 20px;
+                margin-bottom: 30px;
+            }
+
+
+            .form-content label,
+            .was-validated .form-check-input:invalid~.form-check-label,
+            .was-validated .form-check-input:valid~.form-check-label {
+                color: #fff;
+            }
+
+            .form-content input[type=text],
+            .form-content input[type=number],
+            .form-content input[type=email],
+            .form-content select {
+                width: 100%;
+                padding: 9px 20px;
+                text-align: left;
+                border: 0;
+                outline: 0;
+                border-radius: 6px;
+                background-color: #fff;
+                font-size: 15px;
+                font-weight: 300;
+                color: #8D8D8D;
+                -webkit-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+                margin-top: 16px;
+            }
+
+
+            .btn-primary {
+                background-color: #6C757D;
+                outline: none;
+                border: 0px;
+                box-shadow: none;
+            }
+
+            .btn-primary:hover,
+            .btn-primary:focus,
+            .btn-primary:active {
+                background-color: #495056;
+                outline: none !important;
+                border: none !important;
+                box-shadow: none;
+            }
+
+            .form-content textarea {
+                position: static !important;
+                width: 100%;
+                padding: 8px 20px;
+                border-radius: 6px;
+                text-align: left;
+                background-color: #fff;
+                border: 0;
+                font-size: 15px;
+                font-weight: 300;
+                color: #8D8D8D;
+                outline: none;
+                resize: none;
+                height: 120px;
+                -webkit-transition: none;
+                transition: none;
+                margin-bottom: 14px;
+            }
+
+            .form-content textarea:hover,
+            .form-content textarea:focus {
+                border: 0;
+                background-color: #ebeff8;
+                color: #8D8D8D;
+            }
+
+            .mv-up {
+                margin-top: -9px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .invalid-feedback {
+                color: #ff606e;
+            }
+
+            .valid-feedback {
+                color: #2acc80;
+            }
+        </style>
+        <script>
+            (function () {
+                'use strict'
+                const forms = document.querySelectorAll('.requires-validation')
+                Array.from(forms)
+                    .forEach(function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+            })()                        
+        </script>
+
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

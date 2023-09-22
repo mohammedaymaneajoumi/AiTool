@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Add Bootstrap CSS link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/1171a84c58.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+  body {
+    background-color: white;
+  }
+
+  .app-button {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-toggleable-xl navbar-light border-bottom box-shadow mb-3 ">
+
+      <div class="container">
+        <a class="navbar-brand" href><img src="44884218_345707102882519_2446069589734326272_n.jpg"
+            style="height: 40px; padding: 0px 10px;"><span>Magical.tools</span></a>
+        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+          <ul class="navbar-nav">
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="MagicTODO.html">Magic ToDo</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="Formalizer.html">Formalizer</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="Judge.html">Judge</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="Estimator.html">Estimator</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="Compiler.html">Compiler</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="TheChef.html">Chef</a>
+            </li>
+            <li id="apps-toggle" class="nav-item border">
+              <div id="apps-icon" data-tooltip="Apps" class="btn btn-link nav-link mx-2" aria-label="Apps"
+                data-tooltip-attached="true">
+                <i class="fab fa-android mx-1" style="color: #8611d4;"></i><i class="fab fa-apple mx-1"
+                  style="color: #8611d4;"></i>
+              </div>
+              <div id="apps-card" class="card" style="display:none;">
+                <div class="card-body">
+                  <h5 class="card-title">goblin.tools App</h5>
+                  <p class="card-text">goblin.tools is
+                    available as an app in the store:</p>
+                  <div class="d-flex justify-content-center my-2">
+                    <a class="btn btn-link nav-link m-auto border border-2 rounded app-button" href="" target="_blank"
+                      rel="noopener noreferrer">
+                      <i class="fab fa-android fa-2x"></i>
+                      <span>Android</span>
+                    </a>
+                    <a class="btn btn-link nav-link m-auto border border-2 rounded app-button" href="" target="_blank"
+                      rel="noopener noreferrer">
+                      <i class="fab fa-apple fa-2x"></i>
+                      <span>Apple</span>
+                    </a>
+                  </div>
+                  <p>Purchases of the apps go towards
+                    keeping the website completely free
+                    and ad-free, and supporting ongoing
+                    development (and the author).</p>
+                  <p>It can also be installed for free:</p>
+                  <div id="pwa-button" class="btn btn-link nav-link mx-auto border border-2 rounded mt-2"
+                    onclick="promptWebInstall()">
+                    <i class="fas fa-mobile app-icon"></i> As
+                    a Web App
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item border">
+              <div id="dark-mode-toggle" class="btn btn-link nav-link mx-2" data-tooltip="Feedback"
+                data-tooltip-attached="true" onclick="toggleDarkMode()">
+                <i id="theme-icon" class="fas fa-moon"></i>
+              </div>
+
+            </li>
+            <style>
+              .navbar-brand {
+                color: unset !important;
+              }
+
+              .nav-link {
+                color: unset !important;
+              }
+
+              .fa-sun,
+              .fa-moon {
+                color: #8611d4;
+              }
+            </style>
+            <li id="theme-toggle" class="nav-item border">
+              <a class="nav-link mx-1" href="subscribe.html">Subscribe</a>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link mx-1" href="about.html">About</a>
+            </li>
+
+            <style>
+              .dark-mode {
+                background-color: #212529;
+                color: #f0f0f0;
+              }
+            </style>
+            <script>
+              function toggleDarkMode() {
+                const body = document.body;
+                const themeIcon = document.getElementById('theme-icon');
+                const isDarkMode = body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+
+                if (isDarkMode) {
+                  themeIcon.classList.remove('fa-moon');
+                  themeIcon.classList.add('fa-sun');
+                } else {
+                  themeIcon.classList.remove('fa-sun');
+                  themeIcon.classList.add('fa-moon');
+                }
+              }
+
+
+
+
+              function applyDarkModePreference() {
+                const body = document.body;
+                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                const navULItems = document.getElementsByClassName('nav-link');
+
+                if (isDarkMode) {
+                  body.classList.add('dark-mode');
+                  for (let i = 0; i < navULItems.length; i++) {
+                    navULItems[i].classList.add('whiteItem');
+                  }
+
+                } else {
+                  body.classList.remove('dark-mode');
+
+
+                }
+              }
+
+              applyDarkModePreference();
+
+            </script>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <style>
+    .card {
+      position: absolute;
+      top: 2rem;
+      display: none;
+    }
+
+    #apps-toggle:hover #apps-card {
+      display: block;
+      margin-top: 1rem;
+      max-width: 300px;
+      z-index: 101;
+      background-color: white;
+      color: black;
+    }
+
+    .microphone-icon {
+      position: relative;
+    }
+
+    #chat-form-0 {
+      justify-content: space-between;
+      padding: 1%;
+      margin: 0;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      $("#apps-toggle").hover(function () {
+        $("#apps-card").css("display", "block");
+      }, function () {
+        $("#apps-card").css("display", "none");
+      });
+    });
+  </script>
+
+  <div class="container">
+    <div style="position: relative;">
+      <h1 class="text-center mt-4">Magic To Do</h1>
+      <h2 class="text-center">Breaking things down so you don't</h2>
+      <div class="help-container">
+        <button id="help-toggle" aria-label="Help" class="btn btn-outline-secondary rounded-circle"
+          style="position: absolute; right: 0; top: 9px;">
+          <i class="fas fa-question"></i>
+        </button>
+        <div id="help-card" class="card"
+          style="display: none; position: absolute; color:black; right: 0; top: 40px; width: 200px;">
+          <div class="card-body">
+            <h5 class="card-title">Need Help?</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#help-toggle").hover(function () {
+          $("#help-card").fadeIn();
+        }, function () {
+          $("#help-card").fadeOut();
+        });
+      });
+    </script>
+
+    <!-- ///////////////////////////// add button and audio button and html firee range ///////////////////////////// -->
+    <div class="all">
+      <div class="input-group">
+        <input type="text" class="form-control" id="user-input" placeholder="Add new item..."
+          aria-label="Add new item..." aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <div class="input-group-append">
+            <button class="btn" type="button" id="record-button">
+              <i class="fa-solid fa-microphone" style="color: #8611d4;"></i>
+            </button>
+          </div>
+          <button style="background: #8611d4; border: none;"
+            class="btn btn-outline-light todo-list-add-btn rounded-right" type="button">
+            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+          </button>
+          <div class="fire">
+            <div id="spicycontainer" data-tooltip="How much?" class="inline ml-2" data-tooltip-attached="true"
+              bis_skin_checked="1" aria-describedby="tippy-11">
+              <button id="spiciness-toggle" class="btn border">🔥🔥🔥</button>
+            </div>
+            <div id="spiciness-wrapper" class="position-absolute rounded border-2 border p-3 "
+              style="z-index: 999; width: 20rem; right: 0.5rem; bottom: 2.6rem; display: none; background-color: white;"
+              bis_skin_checked="1">
+              <label for="spiciness" class="font-weight-bold text-dark">Spiciness
+                level:</label>
+              <div class="position-relative" bis_skin_checked="1">
+                <div class="mb-3 mt-1 text-dark" style="margin-top: -0.5rem; font-size:0.9rem;" bis_skin_checked="1">
+                  How
+                  much breaking down do you need?</div>
+                <input type="range" class="form-range" id="spiciness" min="1" max="5" step="1" value="3"
+                  style="width: 100%;">
+                <span class="spiciness-indicator" style="left: 0;">🔥🔥🔥</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <ul class="todo-list pl-0"></ul>
+
+
+    <script>
+      const recordButton = document.getElementById('record-button');
+      const userInput = document.getElementById('user-input');
+
+      // Function to send audio to the cloud for transcription
+      async function transcribeAudio(audioBlob) {
+        const apiKey = '';
+        const apiUrl = `https://speech.googleapis.com/v1p1beta1/speech:recognize?key=${apiKey}`;
+
+        const formData = new FormData();
+        formData.append('audio', audioBlob);
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        if (data.results && data.results.length > 0) {
+          const transcript = data.results[0].alternatives[0].transcript;
+          userInput.value = transcript;
+        }
+      }
+
+      recordButton.addEventListener('click', async () => {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        let chunks = [];
+
+        mediaRecorder.ondataavailable = event => {
+          if (event.data.size > 0) {
+            chunks.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = async () => {
+          const blob = new Blob(chunks, { type: 'audio/webm' });
+          await transcribeAudio(blob);
+        };
+
+        mediaRecorder.start();
+        recordButton.classList.add('recording');
+      });
+
+
+
+
+    </script>
+
+
+    <style>
+      .handle {
+        display: flex;
+        align-items: center;
+      }
+
+      .checkbox-container {
+        margin-right: 0.5rem;
+      }
+
+      .todoText {
+        margin-left: 0.5rem;
+      }
+
+      .todocategory {
+        margin-right: 0.25rem;
+      }
+
+      .magic,
+      .dropdown-toggle {
+        height: 32px;
+        width: 32px;
+        padding: 0;
+      }
+
+      .remove {
+        cursor: pointer;
+      }
+
+      .whiteItem {
+        color: #ffffff;
+      }
+
+      .nav-link {
+        color: unset !important;
+      }
+
+      #chat-form {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .navbar-brand {
+        color: unset !important;
+      }
+
+      .edit-input-container {
+        width: 100%;
+      }
+    </style>
+
+    <div class=""></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      (function ($) {
+        'use strict';
+        $(function () {
+          // var todoListItem = $('.todo-list');
+          var cls = $('.todo-list');
+
+          var todoListInput = $('.form-control');
+          var counterForm = 0;
+
+
+          $('.todo-list-add-btn').on("click", function (event) {
+            event.preventDefault();
+
+            var itemsArray = [];
+
+            if (typeof (Storage) !== "undefined") {
+              var existingData = localStorage.getItem("todoItems");
+              if (existingData) {
+                itemsArray = JSON.parse(existingData);
+              }
+
+              var newItem = {
+                item: todoListInput.val(),
+                tasks: [],
+                status: 'true'
+              };
+
+              itemsArray.push(newItem);
+
+              localStorage.setItem("todoItems", JSON.stringify(itemsArray));
+
+              location.reload();
+            } else {
+              console.log("Local storage is not supported by your browser");
+            }
+
+          });
+
+
+
+          var itemsArrays = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+          var itemsWithStatusTrue = itemsArrays.filter(function (item) {
+            return item.status === "true";
+          });
+
+
+          if (itemsWithStatusTrue.length >= 0) {
+            var counter = 0;
+            var counterInp = 0;
+            var brdCounter = 0;
+            var listAnswer = 0;
+            var btnCounter = 0;
+            var idText = 0;
+            var estimateCount = 0;
+            var clear = 0;
+            var idBUTTON = 0;
+            var rmcount = 0;
+            var counterInpes = 0;
+            var rmcountss = 0;
+            itemsWithStatusTrue.forEach(function (item, index) {
+
+              var words = item.item.split(' ');
+              var firstName = words[0];
+              var listItem = `
+              <div class="list-group-item-content border brd-${brdCounter++} file" id="divSHOW-${firstName}">
+                   <div class="form-id-${counter} ${firstName}">
+                    <form action="" method="post" class="list-group-item-content d-flex justify-content-between px-2 ">
+                    <div class="d-flex align-items-center">
+                      <div class="handle me-2">
+                        <i class="fas fa-grip-vertical position-relative mx-2" ></i>
+                      </div>
+                      <div class="checkbox-container">
+                        <input type="checkbox" class="printable checkedInput checkCOPY pe-2" style="width: 16px; height: 16px; margin-top: 6px;" aria-labelledby="complete task" value="${item.item}">
+                      </div>
+                      <span class="todoText printable">${item.item}</span>
+                      
+                    </div>
+                    <div class="ms-1" >
+                      <div class="d-inline-flex flex-column w-100 align-items-end align-content-end align-self-end justify-content-end" style="min-width:70px;">
+                        <div class="d-inline-flex w-100 align-items-center align-content-end align-self-end justify-content-end" style="min-width: 70px;">
+                          <div><p class="m-0 pr-2 txt-${idText++} ${item.item}"></p></div>
+                          <button type="button" style="height: 32px; width: 32px;display:none;" onclick="deleteITEMS(this)" data-keywords="${firstName}" class="btn ${item.item} btn-sm btn-outline-danger" data-tooltip="Delete item" data-tooltip-attached="true" value="${item.item}"><i class="fas fa-trash-alt"></i></button>
+                          <button id="bt-${idBUTTON++} ${item.item}" data-keywords="${item.item}" onclick="makeAnswer(this)" type="button" class="magic btn btn-sm btn-outline-primary magic-button" style="height: 32px; width: 32px;" aria-label="break down this item" data-tooltip="Break down item" data-tooltip-attached="true" data-button-id="${btnCounter++}">
+                              <i class="fas fa-magic"></i>
+                              <span class="spinner spinner-border spinner-border-sm" style="display: none;" data-tooltip-attached="true"></span>
+                          </button>
+                          <div class="dropdown ms-1">
+                              <button  id="dropdownButton" class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" style="height: 32px; width: 34px;" aria-haspopup="true" aria-label="show task options" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                              <div id="dropdownMenu" class="dropdown-menu dropdown-menu-end">
+                                <div class="dropdown-item">
+                                  <button type="button"  class="btn btnEstimates btn-sm btn-outline-primary w-100" onclick="estimateTime(this)" value="${item.item}" data-button-id="${estimateCount++}"><i class="fas fa-clock"></i> Estimate</button>
+                                </div>
+                                <div class="dropdown-item">
+                                  <button type="button" class="btn btn-sm btn-outline-info w-100 editBtn" data-button-id="${counter++}" onclick="handleButtonClick(this)"><i class="fas fa-edit"></i> Edit</button>
+                                </div>
+                                <div class="dropdown-item">
+                                  <button type="button" class="btn btn-sm btn-outline-success" onclick="addOtherTask(this)" value="${item.item}"><i class="fas fa-plus"></i> Add Subactivity</button>
+                                </div>
+                                <div class="dropdown-item"><button type="button" value="${item.item}" class="btn clearEstimat btn-sm btn-outline-secondary w-100" data-button-id="${clear++}" onclick="clearEstimate(this)"><i class="fas fa-stop-circle"></i> Clear estimate</button></div>
+                                <div class="dropdown-item">
+                                  <button type="button" class="btn removeBtn btn-sm btn-outline-danger w-100" onclick="removeItem(this)" data-button-id="${item.item}"><i class="fas fa-trash-alt"></i> Remove</button>
+                                </div>
+                                
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                      </div>
+                      
+                      </form>
+                      <div class="heey-${listAnswer++} mb-4 file">
+                        ${item.tasks && item.tasks.length > 0 ? `
+                          <div>
+                            <span class="collapse-btn" type="button" id="btn-${firstName}" onclick="toggleHiddenContent('${firstName}')" style="position: relative; left: 1.5rem;top:0.7rem;"><i class="fas fa-chevron-right"></i></span>
+                          </div>
+                          
+                          <div class="hidden-content p-4" id="content-${firstName}">
+                            ${generateForLoopContent(item)}
+                          </div>
+                          <div class="hidden-contents px-4" id="inp-${firstName}">
+                            <input data-voice="" type="text" class="form-control edit-input " disabled style="width: 94%;margin-left:5%;height:2%;">
+                          </div>
+                        ` : ''}
+                      </div>
+
+                      
+
+                      
+
+                      </div>
+
+
+                    </div>
+
+
+                    <div id="close-${firstName}" class="list-group-item-content border px-2 d-none div-inp-${counterInp++}">
+                    <form action="" method="post" id="" class="list-group-item-content d-flex justify-content-between">
+                        <div class="list-group-item-content d-flex justify-content-between m-0">
+                          <div class="d-flex align-items-center"><div class="handle me-2">
+                            <i class="fas fa-grip-vertical position-relative"></i>
+                            </div><div class="checkbox-container">
+                              <input type="checkbox" class="printable pe-2" style="width: 16px; height: 16px; margin-top: 6px;" aria-labelledby="complete task">
+                              </div>
+                              <span class="todoText printable ms-1" style="display: none;">3</span>
+                              </div>
+                        </div>
+                        <div class="edit-input-container d-flex"><input data-voice="" type="text" class="form-control edit-input" value="${item.item}">
+                          <div class="d-inline-flex" style="width: 70px;">
+                            <button type="button" class="btn btn-sm btn-success edit-confirm ml-1"
+                              style="width: 32px; height: 37px;" data-tooltip="Save changes" data-tooltip-attached="true" onclick="EditItem(this)" data-button-id="${item.item}"><i
+                                class="fas fa-check"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger edit-cancel ml-1" onclick="closeForm(this)" data-button-id="${rmcountss++}" value="${item.item}"
+                              style="width: 32px; height: 37px;" data-tooltip="Cancel" data-tooltip-attached="true"><i
+                                class="fas fa-times"></i>
+                                </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      </div>
+
+                      <div id="closes-${firstName}" class="list-group-item-content border px-2 d-none div-inps-${counterInpes++}">
+                    <form action="" method="post" id="" class="list-group-item-content d-flex justify-content-between">
+                        <div class="list-group-item-content d-flex justify-content-between m-0">
+                          <div class="d-flex align-items-center"><div class="handle me-2">
+                            <i class="fas fa-grip-vertical position-relative"></i>
+                            </div><div class="checkbox-container">
+                              <input type="checkbox" class="printable pe-2" style="width: 16px; height: 16px; margin-top: 6px;" aria-labelledby="complete task">
+                              </div>
+                              <span class="todoText printable ms-1" style="display: none;">3</span>
+                              </div>
+                        </div>
+                        <div class="edit-input-container d-flex"><input data-voice="" type="text" class="form-control addTASK edit-input " >
+                          <div class="d-inline-flex" style="width: 70px;">
+                            <button type="button" class="btn btn-sm btn-success edit-confirm ml-1"
+                              style="width: 32px; height: 37px;" data-tooltip="Save changes" data-tooltip-attached="true" onclick="taskADD(this)" data-button-id="${item.item}"><i
+                                class="fas fa-check"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger edit-cancel ml-1" onclick="closeTask(this)" value="${firstName}"
+                              style="width: 32px; height: 37px;" data-tooltip="Cancel" data-tooltip-attached="true"><i
+                                class="fas fa-times"></i>
+                                </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+
+                      </div>
+        `;
+
+
+              cls.append(listItem);
+            });
+          } else {
+            console.log("No items found in local storage");
+          }
+
+
+
+          cls.on('change', '.printable', function () {
+            if ($(this).attr('checked')) {
+              $(this).removeAttr('checked');
+            } else {
+              $(this).attr('checked', 'checked');
+            }
+
+            $(this).closest("li").toggleClass('completed');
+          });
+
+
+
+          cls.on('click', '.magic-button', function () {
+            makeAnswer(this);
+          });
+
+        });
+      })(jQuery);
+
+
+
+      function addOtherTask(button) {
+
+        console.log('hello');
+
+
+        const btn = button.value;
+        var words = btn.split(' ');
+        var firstName = words[0];
+
+        const divForm = document.getElementById('closes-' + firstName);
+        const divForms = document.querySelector('.' + firstName);
+
+        divForms.classList.add('d-none');
+        divForm.classList.remove('d-none');
+
+      }
+
+
+      function closeTask(button) {
+        const btn = button.value;
+        var words = btn.split(' ');
+        var firstName = words[0];
+        const divForm = document.getElementById('closes-' + firstName);
+        const divForms = document.querySelector('.' + firstName);
+        divForms.classList.remove('d-none');
+
+
+
+        divForm.classList.add('d-none');
+
+
+      }
+
+      function taskADD(button) {
+        const btn = button.value;
+
+        const formClicked = button.closest('form');
+        const inputVALUE = formClicked.querySelector('.addTASK');
+        const valueINP = inputVALUE.value;
+
+        const itemList = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+        const itemWithTask = itemList.find(item => item.item.includes(btn));
+
+        if (itemWithTask) {
+          itemWithTask.tasks.push(valueINP);
+          localStorage.setItem("todoItems", JSON.stringify(itemList));
+          location.reload();
+
+        }
+
+      }
+
+      function closeForm(button) {
+        const valueBtn = button.value;
+        const btn = button.getAttribute('data-button-id');
+
+        const wordsArray = valueBtn.split(' ');
+
+        const words = wordsArray[0];
+        console.log(words);
+
+        const form = document.getElementById('close-' + words);
+        const divs = document.querySelector('.' + words);
+        const border = document.querySelector('.brd-' + btn);
+
+        if (form) {
+          form.classList.add('d-none');
+
+          if (divs) {
+            divs.classList.remove('d-none');
+            border.classList.add('border');
+          }
+        }
+      }
+
+
+
+
+
+
+    </script>
+    <style>
+      .hidden-content {
+        display: none;
+      }
+    </style>
+
+    <script>
+      function generateForLoopContent(item, isLastItem) {
+        var listAnswerDouble = 0;
+        var dtBTN = 0;
+        var counterInpss = 0;
+        var counterss = 0;
+        var brdCounterss = 0;
+        var counters = 0;
+        var rmcount = 0;
+        var rmvTASK = 0;
+
+        const borderBottomClass = isLastItem ? "list-group-item-content border border-bottom-1 m-0 ml-5 mr-2" : "list-group-item-content border border-bottom-1 m-0 ml-5 mr-2";
+        var loopContent = '';
+        if (item.tasks && item.tasks.length > 0) {
+          loopContent += `
+      
+      <ul class="list-unstyled ms-3 ui-sortable highlight" style="min-height: 1.5rem;">`;
+          item.tasks.forEach(function (task) {
+            var wordss = task.split(' ');
+            var secondElement = wordss[1];
+            loopContent += `
+        <div style="position: relative;" class="brds-${brdCounterss++}">
+            <div class="${borderBottomClass} ${secondElement}">
+              <form action="" id="" class="list-group-item-content d-flex justify-content-between m-0 py-2 px-2 forms-id-${counters}">
+                <div class="d-flex align-items-center">
+                  <div class="handle me-2">
+                    <i class="fas fa-grip-vertical position-relative mx-2"></i>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" class="printable pe-2 checkCOPY" style="width: 16px; height: 16px; margin-top: 6px;" aria-labelledby="complete task" value="${task}">
+                  </div>
+                  <span class="todoText printable">${task}</span>
+                </div>
+                <div class="ms-1">
+                  <div class="d-inline-flex flex-column w-100 align-items-end align-content-end align-self-end justify-content-end" style="min-width: 70px;">
+                    <div class="d-inline-flex w-100 align-items-center align-content-end align-self-end justify-content-end" style="min-width: 70px;">
+                      <div><p class="${task} m-0 pr-2"></p></div>
+                     
+                      <button type="button" onclick="makeDoubleAnswer(this)"class="magic btn btn-sm btn-outline-primary" style="height: 32px; width: 32px;" data-button-id="${secondElement}"> <i class="fas fa-magic"></i>
+                        <span class="spinner spinner-border spinner-border-sm" style="display: none;" data-tooltip-attached="true"></span></button>
+                      <div class="dropdown ms-1">
+                        <button id="dropdownButton" class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" style="height: 32px; width: 34px;" aria-haspopup="true" aria-label="show task options" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div id="dropdownMenu" class="dropdown-menu dropdown-menu-end">
+                          <div class="dropdown-item">
+                            <button type="button" class="btn btn-sm btn-outline-primary w-100 btnEstimates" onclick="estimateTimess(this)" value="${task}" data-button-id="${task}"><i class="fas fa-clock"></i> Estimate</button>
+                          </div>
+                          <div class="dropdown-item">
+                            <button type="button" class="btn btn-sm btn-outline-info w-100 editBtn" data-button-id="${counterss++}" onclick="handleButtonClicks(this)"><i class="fas fa-edit"></i> Edit</button>
+                          </div>
+                         
+                          <div class="dropdown-item">
+                            <button type="button" onclick="clearEstimatess(this)" data-button-id="${task}"  class="btn clearEstimat btn-sm btn-outline-secondary w-100"><i class="fas fa-stop-circle"></i> Clear estimate</button>
+                          </div>
+                          <div class="dropdown-item">
+                            <button type="button" class="btn btn-sm btn-outline-danger w-100" onclick="rmvtask(this)" value="${task}" data-button-id="${rmvTASK++}"><i class="fas fa-trash-alt"></i> Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="listDl-${secondElement} pb-2 file">
+            </div>
+          </div>
+            
+        </div>
+        <div id="close-${secondElement}" class="list-group-item-content border px-2 d-none divs-inp-${counterInpss++}">
+                    <form action="" method="post" id="" class="list-group-item-content d-flex justify-content-between">
+                        <div class="list-group-item-content d-flex justify-content-between m-0">
+                          <div class="d-flex align-items-center"><div class="handle me-2">
+                            <i class="fas fa-grip-vertical position-relative"></i>
+                            </div><div class="checkbox-container">
+                              <input type="checkbox" class="printable pe-2" style="width: 16px; height: 16px; margin-top: 6px;" aria-labelledby="complete task">
+                              </div>
+                              <span class="todoText printable ms-1" style="display: none;">3</span>
+                              </div>
+                        </div>
+                        <div class="edit-input-container d-flex"><input data-voice="" type="text" class="form-control edit-input" value="${task}">
+                          <div class="d-inline-flex" style="width: 70px;">
+                            <button type="button" class="btn btn-sm btn-success edit-confirm ml-1"
+                              style="width: 32px; height: 37px;" data-tooltip="Save changes" data-tooltip-attached="true" onclick="editTask(this)" data-button-id="${task}"><i
+                                class="fas fa-check"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger edit-cancel ml-1" onclick="closeFormss(this)" data-button-id="${rmcount++}" value="${secondElement}"
+                              style="width: 32px; height: 37px;" data-tooltip="Cancel" data-tooltip-attached="true"><i
+                                class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                      </form>
+
+                      </div>
+        
+      `;
+          });
+          loopContent += `</ul>`;
+        } else {
+          loopContent = "";
+        }
+        return loopContent;
+      }
+
+      function handleButtonClicks(button) {
+        const dataId = button.getAttribute('data-button-id');
+        const inpEdit = document.querySelector('.divs-inp-' + dataId);
+        const formData = document.querySelector('.forms-id-' + dataId);
+        const border = document.querySelector('.brds-' + dataId);
+
+
+
+
+        if (formData) {
+          formData.classList.add('d-none');
+          border.classList.remove('border');
+        }
+        if (inpEdit) {
+          inpEdit.classList.remove('d-none');
+        }
+      }
+
+      function closeFormss(button) {
+        const valueBtn = button.value;
+        const btn = button.getAttribute('data-button-id');
+
+        const wordsArray = valueBtn.split(' ');
+
+        const words = wordsArray[0];
+        console.log(words);
+
+        const form = document.getElementById('close-' + valueBtn);
+        const divs = document.querySelector('.' + valueBtn);
+        const border = document.querySelector('.brds-' + btn);
+
+        if (form) {
+          form.classList.add('d-none');
+
+          if (divs) {
+            divs.classList.remove('d-none');
+          }
+        }
+      }
+
+      function rmvtask(button) {
+        const btn = button.getAttribute('data-button-id');
+        const task = button.value;
+        let itemList = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+        const itemWithTask = itemList.find(item => item.item[btn]);
+
+        console.log(itemWithTask);
+
+        if (itemWithTask) {
+          const taskIndex = itemWithTask.tasks.indexOf(task);
+          console.log(taskIndex);
+
+          if (taskIndex !== -1) {
+            itemWithTask.tasks.splice(taskIndex, 1);
+
+            localStorage.setItem("todoItems", JSON.stringify(itemList));
+            location.reload();
+          }
+        }
+      }
+
+
+
+      function editTask(button) {
+        const btnEditId = button.getAttribute('data-button-id');
+        const formClicked = button.closest('form');
+        const inputElement = formClicked.querySelector('.edit-input');
+
+        if (inputElement) {
+          const inputValue = inputElement.value;
+          const itemList = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+          const itemWithTask = itemList.find(item => item.tasks.includes(btnEditId));
+
+          if (itemWithTask) {
+            const taskIndex = itemWithTask.tasks.indexOf(btnEditId);
+
+            if (taskIndex !== -1) {
+              itemWithTask.tasks[taskIndex] = inputValue;
+
+              localStorage.setItem("todoItems", JSON.stringify(itemList));
+
+              console.log("Task edited successfully:", itemWithTask);
+            } else {
+              console.error("Task not found in the item's tasks");
+            }
+          } else {
+            console.error("No item contains the specified task");
+          }
+        }
+      }
+
+
+      
+
+
+
+
+
+      function toggleHiddenContent(firstName) {
+        const content = document.getElementById(`content-${firstName}`);
+        const input = document.getElementById(`inp-${firstName}`);
+        const btn = document.getElementById(`btn-${firstName}`);
+        if (content.style.display === "none" || content.style.display === "") {
+          content.style.display = "block";
+          input.style.display = "none";
+          btn.innerHTML = "";
+          btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        } else {
+          content.style.display = "none";
+          input.style.display = "block";
+          btn.innerHTML = "";
+          btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        }
+      }
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+    <script>
+
+      document.addEventListener('change', function (event) {
+        if (event.target.classList.contains('checkedInput')) {
+          const checkboxValue = event.target.value;
+          const wordss = checkboxValue.split(' ');
+          const firstWords = wordss[0];
+
+          if (checkboxValue.length > 0) {
+            const buttons = document.querySelectorAll('button[data-keywords]');
+            buttons.forEach(button => {
+              const buttonKeywords = button.getAttribute('data-keywords');
+
+
+              if (buttonKeywords === checkboxValue) {
+                if (button.style.display === 'none') {
+                  button.style.display = 'block';
+                } else {
+                  button.style.display = 'none';
+                }
+              }
+            });
+
+            const rmButtons = document.querySelectorAll('button[data-keywords="' + firstWords + '"]');
+            rmButtons.forEach(rmButton => {
+              if (rmButton.style.display === 'block') {
+                rmButton.style.display = 'none';
+              } else {
+                rmButton.style.display = 'block';
+              }
+            });
+          } else {
+            console.log("No words found in the string.");
+          }
+        }
+      });
+
+
+      function deleteITEMS(button) {
+        const buttonKeywords = button.value;
+        const itemList = JSON.parse(localStorage.getItem("todoItems")) || [];
+        const updatedItemList = itemList.filter(item => item.item !== buttonKeywords);
+
+        localStorage.setItem("todoItems", JSON.stringify(updatedItemList));
+
+        location.reload();
+      }
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+    <script>
+
+
+
+      function EditItem(button) {
+        const btnEditId = button.getAttribute('data-button-id');
+        const formClicked = button.closest('form');
+        const inputElement = formClicked.querySelector('.edit-input');
+
+        if (inputElement) {
+          const inputValue = inputElement.value;
+          var itemListeGet = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+          const indexToEdit = itemListeGet.findIndex(item => item.item === btnEditId);
+
+          if (indexToEdit !== -1) {
+            const itemToEdit = itemListeGet[indexToEdit];
+
+            itemToEdit.item = inputValue;
+
+            localStorage.setItem("todoItems", JSON.stringify(itemListeGet));
+
+            location.reload();
+          }
+        }
+      }
+
+
+
+
+      function removeItem(button) {
+        const btnRemoveId = button.getAttribute('data-button-id');
+        var itemListeGet = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+        itemListeGet = itemListeGet.filter(item => item.item !== btnRemoveId);
+
+        localStorage.setItem("todoItems", JSON.stringify(itemListeGet));
+        location.reload();
+      }
+
+
+
+
+
+      function handleButtonClick(button) {
+        const dataId = button.getAttribute('data-button-id');
+        const inpEdit = document.querySelector('.div-inp-' + dataId);
+        const formData = document.querySelector('.form-id-' + dataId);
+        const border = document.querySelector('.brd-' + dataId);
+
+
+
+
+        if (formData) {
+          formData.classList.add('d-none');
+          border.classList.remove('border');
+        }
+        if (inpEdit) {
+          inpEdit.classList.remove('d-none');
+        }
+      }
+
+     
+
+
+
+
+
+
+
+     
+
+
+
+      function toggleVisibility(taskId) {
+        var divElement = document.querySelector('.listDl-' + taskId);
+        if (divElement.style.display === "none" || divElement.style.display === "") {
+          divElement.style.display = "block";
+        } else {
+          divElement.style.display = "none";
+        }
+      }
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+    </script>
+
+
+    <div id="exportButtons" class="unprintable mb-5" style="display: flex; justify-content: space-between;">
+
+      <div class="dropup">
+        <button class="btn btn-outline-secondary dropdown-toggle" data-tooltip="Export"
+          style="height: 40px; width: 60px;" type="button" id="exportButtonsDropdown" data-bs-toggle="dropdown"
+          aria-label="open share options" aria-haspopup="true" aria-expanded="false" data-tooltip-attached="true">
+          <i class="fas fa-share-alt-square"></i>
+        </button>
+        <div class="dropdown-menu dropup p-2" id="exportButtonsMenu">
+          <a id="save" class="dropdown-item export" onclick="downloadAsFile()" style="height: 2.3rem; padding:4px 4px;">
+            <i class="fas fa-download fa-lg" style="width: 1.5rem; height: 1.5rem; padding-left: 4px"></i>
+            <span>Save to file</span>
+          </a>
+          <a id="copy copyButton" class="dropdown-item export" onclick="copyToClipboard()"
+            style="height: 2.3rem; padding:4px 4px;">
+            <i class="fas fa-copy fa-lg" style="width: 1.5rem; height: 1.5rem; padding-left: 4px"></i>
+            <span>Copy to clipboard</span>
+          </a>
+          <a id="print" class="dropdown-item export" onclick="window.print()" style="height: 2.3rem; padding:4px 4px;">
+            <i class="fas fa-print fa-lg" style="width: 1.5rem; height: 1.5rem; padding-left: 4px"></i>
+            <span>Print</span>
+          </a>
+
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+
+        <button id="undo" class="btn mx-1 btn-outline-secondary" data-tooltip="Undo" style="height: 40px; width: 40px;"
+          aria-label="undo" onclick="undo()" data-tooltip-attached="true"><i class="fas fa-undo"></i></button>
+        <button id="redo" class="btn mr-1 btn-outline-secondary" data-tooltip="Redo" style="height: 40px; width: 40px;"
+          aria-label="redo" onclick="redo()" data-tooltip-attached="true"><i class="fas fa-redo"></i></button>
+        <div id="bulkStuff" class="dropup">
+          <button class="btn btn-outline-secondary ms-1 dropdown-toggle export" data-tooltip="Bulk changes"
+            style="height: 40px; width: 60px;" type="button" id="bulkMenuDropdown" data-bs-toggle="dropdown"
+            aria-label="open bulk list options" aria-haspopup="true" aria-expanded="false" data-tooltip-attached="true">
+            <i class="fas fa-hammer"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-2" id="bulkMenu">
+            <div class="dropdown-item export p-2"><button class="magic btn btn-sm btn-outline-primary  w-100"
+                onclick="EstimateAll()"><i class="fas fa-clock"></i> Estimate all tasks</button></div>
+            <div class="dropdown-item export p-2"><button class="magic btn btn-sm btn-outline-secondary  w-100"
+                onclick="clearAllEstimates()"><i class="fas fa-stop-circle"></i> Clear all estimates</button></div>
+            <div class="dropdown-item export p-2"><button class="magic btn btn-sm btn-outline-danger  w-100"
+                onclick="clearAllTasks()"><i class="fas fa-quidditch"></i> Clear entire list</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Add an event listener to the dropdown button
+      document.getElementById('dropdownButton').addEventListener('click', function () {
+        // Toggle the dropdown menu
+        document.getElementById('dropdownMenu').classList.toggle('show');
+      });
+
+      // Close the dropdown menu when clicking outside of it
+      window.addEventListener('click', function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+          var dropdowns = document.getElementsByClassName('dropdown-menu');
+          for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      });
+    </script>
+
+    <script>
+      function undo() {
+        var itemsArrays = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+        var lastTrueItemIndex = -1;
+        for (var i = itemsArrays.length - 1; i >= 0; i--) {
+          if (itemsArrays[i].status === "true") {
+            lastTrueItemIndex = i;
+            break;
+          }
+        }
+
+        if (lastTrueItemIndex !== -1) {
+          itemsArrays[lastTrueItemIndex].status = "false";
+          localStorage.setItem("todoItems", JSON.stringify(itemsArrays));
+          location.reload();
+        } else {
+          console.log("No item with status 'true' found.");
+        }
+      }
+
+
+      function redo() {
+        var itemsArrays = JSON.parse(localStorage.getItem("todoItems")) || [];
+
+        var lastTrueItemIndex = -1;
+        for (var i = itemsArrays.length - 1; i >= 0; i--) {
+          if (itemsArrays[i].status === "false") {
+            lastTrueItemIndex = i;
+            break;
+          }
+        }
+
+        if (lastTrueItemIndex !== -1) {
+          itemsArrays[lastTrueItemIndex].status = "true";
+          localStorage.setItem("todoItems", JSON.stringify(itemsArrays));
+          location.reload();
+        } else {
+          console.log("No item with status 'false' found.");
+        }
+      }
+
+    </script>
+
+    <style>
+      .list-group-item-content {
+        margin-top: 1%;
+        margin-bottom: 1%;
+      }
+    </style>
+    <!-- /////////////////////////// fire range ///////////////////////// -->
+    <script>
+      const spicinessToggle = document.getElementById("spiciness-toggle");
+      const spicinessWrapper = document.getElementById("spiciness-wrapper");
+      const spicinessIndicator = document.querySelector(".spiciness-indicator");
+
+      spicinessToggle.addEventListener("click", () => {
+        if (spicinessWrapper.style.display === "none") {
+          spicinessWrapper.style.display = "block";
+        } else {
+          spicinessWrapper.style.display = "none";
+        }
+      });
+
+      const spicinessRange = document.getElementById("spiciness");
+      spicinessRange.addEventListener("input", updateSpicinessIndicator);
+
+      function updateSpicinessIndicator() {
+        const spicinessLevel = spicinessRange.value;
+        const fireEmoji = "🔥";
+        spicinessIndicator.textContent = fireEmoji.repeat(spicinessLevel);
+        spicinessToggle.innerHTML = fireEmoji.repeat(spicinessLevel);
+      }
+    </script>
+
+    <style>
+      .input-group {
+        margin-top: 10%;
+      }
+
+
+      .all {
+        flex-direction: row;
+      }
+
+      .page-content {
+        color: #000000;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+    </head>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src="hide.js"></script>
+
+
+
+
+    <script>
+
+
+
+      function EstimateAll() {
+        const estimateButtons = document.querySelectorAll('.btnEstimates');
+
+        estimateButtons.forEach(button => {
+          estimateTime(button);
+          estimateTimess(button);
+          estimateTimesss(button);
+        });
+      }
+
+      function clearEstimate(button) {
+        const btnClear = button.getAttribute("data-button-id");
+        const btn = button.value;
+        const paragraphElements = document.getElementsByClassName(btn);
+        for (let i = 0; i < paragraphElements.length; i++) {
+          paragraphElements[i].textContent = "";
+        }
+
+
+
+      }
+
+      function clearEstimatess(button) {
+        const btnClear = button.getAttribute("data-button-id");
+        const classNames = btnClear.split(' ')[1];
+        console.log(classNames);
+
+        const paragraphElements = document.getElementsByClassName(classNames);
+
+        for (let i = 0; i < paragraphElements.length; i++) {
+          paragraphElements[i].textContent = "";
+        }
+      }
+
+      function clearEstimatesss(button) {
+        const btnClear = button.getAttribute("data-button-id");
+        const classNames = btnClear.split(' ')[1];
+        console.log(classNames);
+
+        const paragraphElements = document.getElementsByClassName(classNames);
+
+        for (let i = 0; i < paragraphElements.length; i++) {
+          paragraphElements[i].textContent = "";
+        }
+      }
+
+
+
+      function clearAllEstimates() {
+        const estimateButtons = document.querySelectorAll('.clearEstimat');
+
+        estimateButtons.forEach(button => {
+          clearEstimate(button);
+          clearEstimatess(button);
+          clearEstimatesss(button);
+        });
+      }
+
+
+      function clearAllTasks() {
+        var itemsArrays = JSON.parse(localStorage.getItem("todoItems")) || [];
+        localStorage.removeItem("todoItems");
+        location.reload();
+      }
+
+
+
+
+
+
+
+
+      function checkAllCheckboxes() {
+        var checkboxes = document.querySelectorAll('.checkCOPY');
+
+        checkboxes.forEach(function (checkbox) {
+          checkbox.checked = true;
+        });
+      }
+
+
+
+      function copyToClipboard() {
+        var checkboxes = document.querySelectorAll('.checkCOPY');
+        checkAllCheckboxes();
+
+
+        var selectedValues = [];
+
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            selectedValues.push(checkbox.value);
+          }
+        });
+
+        if (selectedValues.length > 0) {
+          var copiedText = selectedValues.join(', ');
+
+          copyTextToClipboard(copiedText);
+
+        } else {
+          alert("No checkboxes selected.");
+        }
+      }
+
+      function copyTextToClipboard(text) {
+        var tempInput = document.createElement('input');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+
+
+
+
+
+
+      function downloadAsFile() {
+        const checkboxes = document.querySelectorAll('.checkCOPY');
+        checkAllCheckboxes();
+        let checkboxData = [];
+
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            checkboxData.push(checkbox.value);
+          }
+        });
+
+        if (checkboxData.length === 0) {
+          alert('No checkboxes selected.');
+          return;
+        }
+
+        // Create a PDF document with styling
+        const pdfContent = {
+          content: [
+            { text: 'My Tasks:', style: 'header' },
+            {
+              ul: checkboxData.map(item => {
+                return {
+                  text: item.split(' ').map(word => {
+                    return /\d+/.test(word) ? { text: word, color: 'black' } : { text: word, color: 'blue' };
+                  }),
+                  margin: [0, 5, 0, 5],
+                };
+              }),
+            },
+          ],
+          styles: {
+            header: {
+              fontSize: 18,
+              bold: true,
+              margin: [0, 0, 0, 10],
+            },
+          },
+        };
+
+        pdfMake.createPdf(pdfContent).download('checkboxData.pdf');
+      }
+
+
+
+      function checkAllCheckboxes() {
+        var checkboxes = document.querySelectorAll('.checkCOPY');
+
+        checkboxes.forEach(function (checkbox) {
+          checkbox.checked = true;
+        });
+      }
+
+
+
+    </script>
+</body>
+
+</html>

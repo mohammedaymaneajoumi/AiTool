@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1171a84c58.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+    body {
+        background-color: white;
+    }
+
+    .app-button {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-xl navbar-light border-bottom box-shadow mb-3 ">
+
+            <div class="container">
+                <a class="navbar-brand" href><img src="44884218_345707102882519_2446069589734326272_n.jpg"
+                        style="height: 40px; padding: 0px 10px;"><span>Magical.tools</span></a>
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <ul class="navbar-nav">
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="MagicTODO.html">Magic ToDo</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Formalizer.html">Formalizer</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Judge.html">Judge</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Estimator.html">Estimator</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="Compiler.html">Compiler</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="TheChef.html">Chef</a>
+                        </li>
+                        <li id="apps-toggle" class="nav-item border">
+                            <div id="apps-icon" data-tooltip="Apps" class="btn btn-link nav-link mx-2" aria-label="Apps"
+                                data-tooltip-attached="true">
+                                <i class="fab fa-android mx-1" style="color: #8611d4;"></i><i class="fab fa-apple mx-1"
+                                    style="color: #8611d4;"></i>
+                            </div>
+                            <div id="apps-card" class="card" style="display:none;">
+                                <div class="card-body">
+                                    <h5 class="card-title">goblin.tools App</h5>
+                                    <p class="card-text">goblin.tools is
+                                        available as an app in the store:</p>
+                                    <div class="d-flex justify-content-center my-2">
+                                        <a class="btn btn-link nav-link m-auto border border-2 rounded app-button"
+                                            href="" target="_blank" rel="noopener noreferrer">
+                                            <i class="fab fa-android fa-2x"></i>
+                                            <span>Android</span>
+                                        </a>
+                                        <a class="btn btn-link nav-link m-auto border border-2 rounded app-button"
+                                            href="" target="_blank" rel="noopener noreferrer">
+                                            <i class="fab fa-apple fa-2x"></i>
+                                            <span>Apple</span>
+                                        </a>
+                                    </div>
+                                    <p>Purchases of the apps go towards
+                                        keeping the website completely free
+                                        and ad-free, and supporting ongoing
+                                        development (and the author).</p>
+                                    <p>It can also be installed for free:</p>
+                                    <div id="pwa-button"
+                                        class="btn btn-link nav-link mx-auto border border-2 rounded mt-2"
+                                        onclick="promptWebInstall()">
+                                        <i class="fas fa-mobile app-icon"></i> As
+                                        a Web App
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item border">
+                            <div id="dark-mode-toggle" class="btn btn-link nav-link mx-2" data-tooltip="Feedback"
+                                data-tooltip-attached="true" onclick="toggleDarkMode()">
+                                <i id="theme-icon" class="fas fa-moon"></i>
+                            </div>
+                        </li>
+                        <style>
+                            .navbar-brand {
+                                color: unset !important;
+                            }
+
+                            .nav-link {
+                                color: unset !important;
+                            }
+
+                            .fa-sun,
+                            .fa-moon {
+                                color: #8611d4;
+                            }
+                        </style>
+                        <li id="theme-toggle" class="nav-item border">
+                            <a class="nav-link mx-1" href="subscribe.html">Subscribe</a>
+                        </li>
+                        <li class="nav-item border">
+                            <a class="nav-link mx-1" href="about.html">About</a>
+                        </li>
+
+                        <style>
+                            .dark-mode {
+                                background-color: #212529;
+                                color: #f0f0f0;
+                            }
+                        </style>
+                        <script>
+                            function toggleDarkMode() {
+                                const body = document.body;
+                                const themeIcon = document.getElementById('theme-icon');
+                                const isDarkMode = body.classList.toggle('dark-mode');
+                                localStorage.setItem('darkMode', isDarkMode);
+
+                                if (isDarkMode) {
+                                    themeIcon.classList.remove('fa-sun');
+                                    themeIcon.classList.add('fa-moon');
+                                } else {
+                                    themeIcon.classList.remove('fa-moon');
+                                    themeIcon.classList.add('fa-sun');
+                                }
+                            }
+
+
+
+
+                            function applyDarkModePreference() {
+                                const body = document.body;
+                                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                                const navULItems = document.getElementsByClassName('nav-link');
+
+                                if (isDarkMode) {
+                                    body.classList.add('dark-mode');
+                                    for (let i = 0; i < navULItems.length; i++) {
+                                        navULItems[i].classList.add('whiteItem');
+                                    }
+
+                                } else {
+                                    body.classList.remove('dark-mode');
+
+
+                                }
+                            }
+
+                            applyDarkModePreference();
+
+                        </script>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <style>
+        .card {
+            position: absolute;
+            top: 2rem;
+            display: none;
+        }
+
+        #apps-toggle:hover #apps-card {
+            display: block;
+            margin-top: 1rem;
+            max-width: 300px;
+            z-index: 101;
+            background-color: white;
+            color: black;
+        }
+
+        .microphone-icon {
+            position: relative;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#apps-toggle").hover(function () {
+                $("#apps-card").css("display", "block");
+            }, function () {
+                $("#apps-card").css("display", "none");
+            });
+        });
+    </script>
+
+    <div class="container">
+        <div style="position: relative;">
+            <h1 class="text-center mt-4">The Judge</h1>
+            <h2 class="text-center">Am I misreading the tone of this?</h2>
+            <div class="help-container">
+                <button id="help-toggle" aria-label="Help" class="btn btn-outline-secondary rounded-circle"
+                    style="position: absolute; right: 0; top: 9px;">
+                    <i class="fas fa-question"></i>
+                </button>
+                <div id="help-card" class="card"
+                    style="display: none; position: absolute; color:black; right: 0; top: 40px; width: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Need Help?</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#help-toggle").hover(function () {
+                    $("#help-card").fadeIn();
+                }, function () {
+                    $("#help-card").fadeOut();
+                });
+            });
+        </script>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form action="" method="post" id="chat-form">
+                    <div id="textAreaContainer" class="w-100 position-relative">
+                        <textarea data-voice="" id="inputText" class="inputText form-control mt-4" rows="7"
+                            placeholder="Enter your text here...">
+                        </textarea>
+                        <textArea class="form-control mt-4" rows="3" placeholder="Enter a reply here..."
+                            id="newTextArea"></textArea>
+
+                        <div class="microphone-icon "><i class="fas fa-microphone my-2" type="button" id="record-button"
+                                style="cursor: pointer; color: gray; position: absolute; right: 2%; bottom: 3%;"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3 justify-content-between">
+                        <button id="convertBtn" class="btn btn-primary" aria-label="judge tone"
+                            style="background-color: #8611d4; border: none;">
+                            <span class="text">Judge</span>
+                        </button>
+                        <div>
+                            <button id="addTextArea" data-tooltip="Add a reply in a conversation"
+                                class="btn btn-outline-primary" style="background-color: #8611d4; border: none;"
+                                aria-label="add/hide text area" onclick="toggleTextArea()"><i class="fas fa-plus"
+                                    style="color: #fff;"></i></button>
+                        </div>
+                    </div>
+                    <textarea id="outputText" class="form-control mt-4" rows="7" readonly=""
+                        placeholder="Your text comes across as..."></textarea>
+                    <div class="d-flex flex-column mb-2">
+                        <button id="copyBtn" class="btn btn-secondary align-self-end mt-2"
+                            aria-label="copy result to clipboard" data-tooltip="Copy to clipboard"
+                            onclick="copyResultToClipboard()" data-tooltip-attached="true"
+                            style="background-color: #8611d4; border: none;">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <style>
+            #newTextArea {
+                display: none;
+            }
+        </style>
+
+        <script>
+            const recordButton = document.getElementById('record-button');
+            const userInput = document.getElementById('user-input');
+
+            // Function to send audio to the cloud for transcription
+            async function transcribeAudio(audioBlob) {
+                const apiKey = '';
+                const apiUrl = "https://speech.googleapis.com/v1p1beta1/speech:recognize?key=${apiKey}";
+
+                const formData = new FormData();
+                formData.append('audio', audioBlob);
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+                if (data.results && data.results.length > 0) {
+                    const transcript = data.results[0].alternatives[0].transcript;
+                    userInput.value = transcript;
+                }
+            }
+
+            recordButton.addEventListener('click', async () => {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const mediaRecorder = new MediaRecorder(stream);
+                let chunks = [];
+
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'audio/webm' });
+                    await transcribeAudio(blob);
+                };
+
+                mediaRecorder.start();
+                recordButton.classList.add('recording');
+            });
+        </script>
+        <script>
+            var isTextAreaVisible = false;
+
+            function toggleTextArea() {
+                if (isTextAreaVisible) {
+                    hideTextArea();
+                } else {
+                    showTextArea();
+                }
+            }
+
+        </script>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+
+    <script>
+        function toggleTextArea() {
+            const reply = document.getElementById("newTextArea");
+            var btnReply = document.getElementById("addTextArea");
+
+
+            if (reply.style.display === 'none') {
+                reply.style.display = "block";
+                btnReply.innerHTML = "";
+                btnReply.innerHTML = '<i class="fas fa-minus"style="color: #fff;"></i>';
+
+            } else {
+                reply.style.display = "none";
+                btnReply.innerHTML = "";
+                btnReply.innerHTML = '<i class="fas fa-plus"style="color: #fff;"></i>';
+            }
+
+        }
+    </script>
+
+    <script>
+        const form = document.getElementById("chat-form");
+        const input = document.getElementById("inputText");
+        const reply = document.getElementById("newTextArea");
+
+        const messages = document.getElementById("outputText");
+        const apiKey = "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";
+
+
+
+
+
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            let message = "";
+
+            if (reply.value != "") {
+                message = 'explain to me the emotional content of the text ' + ' ' + input.value + ' plus this reply ' + reply.value;
+            }
+            else {
+                message = 'explain to me the emotional content of the text ' + ' ' + input.value;
+            }
+
+
+
+            messages.innerHTML = "";
+
+            try {
+                const response = await axios.post(
+                    "https://api.openai.com/v1/completions",
+                    {
+                        prompt: message,
+                        model: "text-davinci-003",
+                        temperature: 0,
+                        max_tokens: 1000,
+                        top_p: 1,
+                        frequency_penalty: 0.0,
+                        presence_penalty: 0.0,
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${apiKey}`,
+                        },
+                    }
+                );
+
+                const chatbotResponse = response.data.choices[0].text;
+
+                messages.innerHTML += chatbotResponse;
+            } catch (error) {
+                console.error("Error fetching chatbot response:", error);
+            }
+        });
+
+
+    </script>
+
+    <script>
+        function copyResultToClipboard() {
+            const outputText = document.getElementById("outputText");
+
+            outputText.select();
+            outputText.setSelectionRange(0, 99999);
+
+            document.execCommand("copy");
+
+            outputText.setSelectionRange(0, 0);
+
+            alert("Text copied to clipboard!");
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
